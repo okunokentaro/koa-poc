@@ -4,6 +4,14 @@
   "bugs": {
     "url": "https://github.com/okunokentaro/koa-poc/issues"
   },
+  "devDependencies": {
+    "prettier": "2.3.2",
+    "typescript": "4.2.3"
+  },
+  "engines": {
+    "node": "12.18.3",
+    "npm": "6.14.6"
+  },
   "homepage": "https://github.com/okunokentaro/koa-poc#readme",
   "keywords": [],
   "license": "MIT",
