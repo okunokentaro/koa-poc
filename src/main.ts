@@ -7,8 +7,8 @@ function main(): void {
     try {
       console.log("middleware 100");
       throw new Error("middleware 110 Error");
-    } catch (e) {
-      next(e);
+    } catch (___) {
+      next();
     }
   });
 
