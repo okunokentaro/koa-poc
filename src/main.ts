@@ -5,13 +5,13 @@ function main(): void {
 
   app.use((_, res, next) => {
     console.log("middleware 100");
-    res.status(200).end();
+    res.status(200)
     next();
   });
 
-  app.use(() => {
+  app.use((_, res) => {
     console.log("middleware 200");
-
+    res.status(500).end();
   });
 
   const port = 3000;
