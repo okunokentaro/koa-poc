@@ -7,19 +7,22 @@ function main(): void {
     try {
       console.log("middleware 100");
       throw new Error("middleware 110 Error");
-    } catch (___) {
-      next();
-    }
-  });
-
-  app.use((_, __, next) => {
-    try {
-      console.log("middleware 200");
-      throw new Error("middleware 220 Error");
     } catch (e) {
       next(e);
     }
   });
+
+  app.use(
+    ((): ErrorRequestHandler => {
+      return (err, req, res, next) => {
+        console.log("middleware 200");
+        console.log("err", err);
+        console.log("err instanceof Error", err instanceof Error); // true
+        res.status(400);
+        next(err);
+      };
+    })()
+  );
 
   app.use(
     ((): ErrorRequestHandler => {
