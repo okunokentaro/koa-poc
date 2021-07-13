@@ -16,24 +16,31 @@ function main(): void {
     ((): ErrorRequestHandler => {
       return (err, req, res, next) => {
         console.log("middleware 200");
-        console.log("err", err);
-        console.log("err instanceof Error", err instanceof Error); // true
         res.status(400);
         next(err);
       };
     })()
   );
 
+  app.use((_, __, next) => {
+    console.log("middleware 300");
+    next();
+  });
+
   app.use(
     ((): ErrorRequestHandler => {
       return (err, req, res, next) => {
-        console.log("middleware 300");
-        console.log("err", err);
-        console.log("err instanceof Error", err instanceof Error); // true
+        console.log("middleware 400");
         res.status(500).end();
+        next();
       };
     })()
   );
+
+  app.use((_, __, next) => {
+    console.log("middleware 500");
+    next();
+  });
 
   const port = 3000;
   app.listen(port, () => console.log(`listening at http://localhost:${port}`));
