@@ -1,11 +1,14 @@
-import express from 'express';
+import express from "express";
 
 function main(): void {
   const app = express();
 
-  app.use((req, res, next)=> {
-    console.log(req, res, next);
-    res.status(200).end();
+  app.use(() => {
+    console.log("middleware 100");
+  });
+
+  app.use(() => {
+    console.log("middleware 200");
   });
 
   const port = 3000;
