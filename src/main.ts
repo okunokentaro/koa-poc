@@ -3,8 +3,9 @@ import express from "express";
 function main(): void {
   const app = express();
 
-  app.use(() => {
+  app.use((_, res) => {
     console.log("middleware 100");
+    res.status(200).end();
   });
 
   app.use(() => {
