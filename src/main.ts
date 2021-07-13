@@ -3,14 +3,15 @@ import express from "express";
 function main(): void {
   const app = express();
 
-  app.use((_, __, next) => {
+  app.use((_, res, next) => {
     console.log("middleware 100");
+    res.status(200).end();
     next();
   });
 
-  app.use((_, res) => {
+  app.use(() => {
     console.log("middleware 200");
-    res.status(200).end();
+
   });
 
   const port = 3000;
